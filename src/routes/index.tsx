@@ -15,13 +15,13 @@ function HeroSection() {
           <HeroItems>
             <HeroItemsView>
               <CarouselItem class="w-full">
-                <HeroItem aspectRatio="16/9" maxHeight={600}>
+                <HeroItem aspectRatio="21/9" maxHeight={500}>
                   <HeroBackground />
                   <HeroContent contentPosition="center">
                     <HeroSubtitle />
                     <HeroTitle />
                     <HeroDescription />
-                    <Flex class="gap-3 mt-4">
+                    <Flex class="gap-3 mt-6">
                       <HeroCtaPrimary />
                     </Flex>
                   </HeroContent>
@@ -37,21 +37,24 @@ function HeroSection() {
   )
 }
 
-function CategorySection() {
+function RoomSection() {
   return (
-    <section class="py-12 bg-background">
+    <section class="py-16 bg-stone-50">
       <div class="container mx-auto px-4">
-        <Text variant="h2" class="text-2xl font-bold mb-8">Shop by Category</Text>
+        <Text variant="h2" class="text-2xl font-serif font-light text-center mb-2">Shop by Room</Text>
+        <Text class="text-muted-foreground text-center mb-10">Find the perfect pieces for every space</Text>
+        
         <CategoryList mode="root">
           <CategoryListEmptyView />
-          <Grid cols={2} colsSm={2} colsMd={3} colsLg={4}>
+          <Grid cols={2} colsSm={2} colsMd={4} colsLg={4}>
             <CategoryListView>
-              <Category href="categories" class="group m-1">
-                <div class="relative overflow-hidden rounded-lg">
-                  <CategoryImage class="w-full aspect-square object-cover transition-transform group-hover:scale-105" />
-                </div>
-                <div class="p-4 text-center">
-                  <CategoryName class="font-semibold group-hover:text-primary transition-colors" />
+              <Category href="categories" class="group">
+                <div class="relative overflow-hidden rounded-lg aspect-[4/5]">
+                  <CategoryImage class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <CategoryName class="text-white text-lg font-serif" />
+                  </div>
                 </div>
               </Category>
             </CategoryListView>
@@ -62,49 +65,45 @@ function CategorySection() {
   )
 }
 
-function SectionTitle(props: { title: string }) {
-  return (
-    <Text variant="h2" class="text-2xl font-bold mb-8">
-      {props.title}
-    </Text>
-  )
-}
-
 function ProductCard() {
   return (
-    <Product class="group bg-white rounded-lg border m-1 overflow-hidden hover:shadow-lg transition-all duration-200">
-      <div class="relative overflow-hidden">
-        <ProductImage class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105" />
-        <div class="absolute top-2 right-2">
-          <ProductToggleWishlistTrigger class="p-2 bg-white/90 rounded-full hover:bg-white" />
+    <Product class="group bg-white rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300">
+      <div class="relative overflow-hidden bg-stone-100">
+        <ProductImage class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+          <ProductToggleWishlistTrigger class="p-2 bg-white rounded-full shadow-md hover:bg-stone-50" />
         </div>
-        <div class="absolute bottom-2 left-2">
-          <ProductStockBadge class="text-xs" />
+        <div class="absolute bottom-3 left-3">
+          <ProductStockBadge class="text-xs bg-white/90 backdrop-blur-sm" />
         </div>
       </div>
       <div class="p-4">
-        <ProductName class="font-medium line-clamp-2 min-h-[2.5rem]" />
-        <div class="flex items-baseline gap-2 mt-2">
-          <ProductPrice class="text-lg font-bold text-primary" />
+        <ProductName class="font-medium text-stone-800 line-clamp-2 min-h-[2.5rem]" />
+        <div class="flex items-baseline gap-2 mt-3">
+          <ProductPrice class="text-lg font-serif text-stone-900" />
         </div>
         <div class="mt-4">
-          <ProductAddToCartTrigger class="w-full" />
+          <ProductAddToCartTrigger class="w-full bg-stone-900 hover:bg-stone-800 text-white text-sm py-2 rounded-sm" />
         </div>
       </div>
     </Product>
   )
 }
 
-function NewArrivalsSection() {
+function FeaturedSection() {
   return (
-    <section class="py-12 bg-muted/30">
+    <section class="py-16 bg-white">
       <div class="container mx-auto px-4">
+        <Flex class="flex-col items-center mb-12">
+          <Text variant="h2" class="text-2xl font-serif font-light">New Arrivals</Text>
+          <Text class="text-muted-foreground mt-2">Fresh finds for your home</Text>
+        </Flex>
+        
         <RecommendationsRoot type="newest" limit={8}>
           <RecommendationsItems>
             <RecommendationsContent>
-              <SectionTitle title="New Arrivals" />
               <Grid cols={2} colsSm={2} colsMd={3} colsLg={4}>
-                <RecommendationsItemsView >
+                <RecommendationsItemsView>
                   <ProductCard />
                 </RecommendationsItemsView>
               </Grid>
@@ -116,15 +115,18 @@ function NewArrivalsSection() {
   )
 }
 
-function PopularProductsSection() {
+function BestsellersSection() {
   return (
-    <section class="py-12 bg-background">
+    <section class="py-16 bg-stone-50">
       <div class="container mx-auto px-4">
+        <Flex class="flex-col items-center mb-12">
+          <Text variant="h2" class="text-2xl font-serif font-light">Customer Favorites</Text>
+          <Text class="text-muted-foreground mt-2">Most loved pieces in our collection</Text>
+        </Flex>
+        
         <RecommendationsRoot type="popular" limit={8}>
-          <SectionTitle title="Popular Products" />
           <RecommendationsItems>
             <RecommendationsContent>
-              <SectionTitle title="Popular Products" />
               <Grid cols={2} colsSm={2} colsMd={3} colsLg={4}>
                 <RecommendationsItemsView>
                   <ProductCard />
@@ -142,9 +144,9 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <CategorySection />
-      <NewArrivalsSection />
-      <PopularProductsSection />
+      <RoomSection />
+      <FeaturedSection />
+      <BestsellersSection />
     </>
   )
 }

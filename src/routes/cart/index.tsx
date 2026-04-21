@@ -7,81 +7,86 @@ import { Link } from "~/components/ui/link"
 
 export default function CartPage() {
   return (
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-      <Text variant="h1" class="text-2xl font-bold mb-6">Shopping Cart</Text>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Cart Items */}
-        <div class="lg:col-span-2">
-          <CartItems>
-            <CartItemsView>
-              <div class="space-y-4">
-                <div class="bg-white rounded-lg border p-4">
-                  <Flex gap={4} align="start">
-                    <CartItemCheckbox />
-                    <Product class="flex gap-4 flex-1 min-w-0">
-                      <ProductImage class="w-20 h-20 object-cover rounded-lg flex-shrink-0" />
-                      <div class="flex-1 min-w-0">
-                        <ProductName class="font-medium truncate" />
-                        <ProductPrice class="text-sm text-muted-foreground mt-1" />
+    <div class="bg-stone-50 min-h-screen">
+      <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <Text variant="h1" class="text-2xl font-serif font-light mb-8">Your Cart</Text>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2">
+            <CartItems>
+              <CartItemsView>
+                <div class="space-y-4">
+                  <div class="bg-white rounded-sm p-6">
+                    <Flex gap={4} align="start" class="flex-wrap">
+                      <div class="flex items-start shrink-0">
+                        <CartItemCheckbox />
                       </div>
-                      <div class="flex items-center gap-3">
-                        <ProductQuantityActions />
-                        <div class="flex flex-col items-end gap-1">
-                          <ProductRemoveFromCartTrigger class="text-muted-foreground hover:text-destructive" />
+                      <Product class="flex gap-4 flex-1 min-w-0">
+                        <ProductImage class="w-24 h-24 object-cover rounded-sm flex-shrink-0" />
+                        <div class="flex flex-col gap-2 min-w-0 flex-1">
+                          <ProductName class="font-medium text-stone-800 truncate" />
+                          <ProductPrice class="text-stone-600" />
+                          <div class="flex items-center gap-4 mt-2">
+                            <ProductQuantityActions class="w-auto shrink-0 border rounded-sm" />
+                            <ProductRemoveFromCartTrigger class="text-stone-400 hover:text-red-500 text-sm shrink-0" />
+                          </div>
                         </div>
-                      </div>
-                    </Product>
+                      </Product>
+                    </Flex>
+                  </div>
+                </div>
+              </CartItemsView>
+              
+              <CartEmpty>
+                <div class="bg-white rounded-sm p-16 text-center">
+                  <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-stone-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <h2 class="text-xl font-serif font-light mb-3">Your cart is empty</h2>
+                  <p class="text-stone-500 mb-6">Start adding furniture to your cart</p>
+                  <Button as={Link} href="/products" class="bg-stone-800 hover:bg-stone-700 text-white px-8">
+                    Browse Collection
+                  </Button>
+                </div>
+              </CartEmpty>
+            </CartItems>
+          </div>
+
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-sm p-6 sticky top-4">
+              <Text variant="h2" class="text-lg font-serif font-light mb-6">Order Summary</Text>
+              
+              <div class="space-y-4 mb-6">
+                <Flex justify="between">
+                  <Text class="text-stone-500">Subtotal</Text>
+                  <CartSubtotal />
+                </Flex>
+                <Flex justify="between">
+                  <Text class="text-stone-500">Shipping</Text>
+                  <Text class="text-stone-500 text-sm">Calculated at checkout</Text>
+                </Flex>
+                <div class="border-t pt-4">
+                  <Flex justify="between">
+                    <Text class="font-medium">Total</Text>
+                    <CartSelectedSubtotal />
                   </Flex>
                 </div>
               </div>
-            </CartItemsView>
-            
-            <CartEmpty>
-              <div class="bg-white rounded-lg border p-12 text-center">
-                <div class="text-6xl mb-4">🛒</div>
-                <h2 class="text-xl font-medium mb-2">Your cart is empty</h2>
-                <p class="text-muted-foreground mb-6">Looks like you haven't added anything to your cart yet.</p>
-                <Button as={Link} href="/products" class="px-6">
-                  Browse Products
+
+              <CartSummary>
+                <CartCheckoutTrigger href="/checkout" class="w-full bg-stone-800 hover:bg-stone-700 text-white py-3 rounded-sm" />
+                <CartClearTrigger variant="outline" class="w-full mt-3 border-stone-300 text-stone-600 hover:bg-stone-50" />
+              </CartSummary>
+
+              <CartEmpty>
+                <Button as={Link} href="/products" variant="outline" class="w-full border-stone-300 text-stone-600 hover:bg-stone-50">
+                  Continue Shopping
                 </Button>
-              </div>
-            </CartEmpty>
-          </CartItems>
-        </div>
-
-        {/* Order Summary */}
-        <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg border p-6 sticky top-4">
-            <Text variant="h2" class="text-lg font-semibold mb-4">Order Summary</Text>
-            
-            <div class="space-y-3 mb-6">
-              <Flex justify="between">
-                <Text class="text-muted-foreground">Subtotal</Text>
-                <CartSubtotal />
-              </Flex>
-              <Flex justify="between">
-                <Text class="text-muted-foreground">Shipping</Text>
-                <Text class="text-muted-foreground">Calculated at checkout</Text>
-              </Flex>
-              <div class="border-t pt-3">
-                <Flex justify="between">
-                  <Text class="font-semibold">Total</Text>
-                  <CartSelectedSubtotal />
-                </Flex>
-              </div>
+              </CartEmpty>
             </div>
-
-            <CartSummary>
-              <CartCheckoutTrigger href="/checkout" class="w-full" />
-              <CartClearTrigger variant="outline" class="w-full mt-3" />
-            </CartSummary>
-
-            <CartEmpty>
-              <Button as={Link} href="/products" variant="outline" class="w-full">
-                Continue Shopping
-              </Button>
-            </CartEmpty>
           </div>
         </div>
       </div>
