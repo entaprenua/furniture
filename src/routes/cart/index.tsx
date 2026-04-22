@@ -10,7 +10,7 @@ export default function CartPage() {
     <div class="bg-stone-50 min-h-screen">
       <div class="container mx-auto px-4 py-12 max-w-6xl">
         <Text variant="h1" class="text-2xl font-serif font-light mb-8">Your Cart</Text>
-        
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div class="lg:col-span-2">
             <CartItems>
@@ -21,7 +21,7 @@ export default function CartPage() {
                       <div class="flex items-start shrink-0">
                         <CartItemCheckbox />
                       </div>
-                      <Product class="flex gap-4 flex-1 min-w-0">
+                      <Product href="products" class="flex gap-4 flex-1 min-w-0">
                         <ProductImage class="w-24 h-24 object-cover rounded-sm flex-shrink-0" />
                         <div class="flex flex-col gap-2 min-w-0 flex-1">
                           <ProductName class="font-medium text-stone-800 truncate" />
@@ -36,7 +36,7 @@ export default function CartPage() {
                   </div>
                 </div>
               </CartItemsView>
-              
+
               <CartEmpty>
                 <div class="bg-white rounded-sm p-16 text-center">
                   <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -58,7 +58,7 @@ export default function CartPage() {
           <div class="lg:col-span-1">
             <div class="bg-white rounded-sm p-6 sticky top-4">
               <Text variant="h2" class="text-lg font-serif font-light mb-6">Order Summary</Text>
-              
+
               <div class="space-y-4 mb-6">
                 <Flex justify="between">
                   <Text class="text-stone-500">Subtotal</Text>

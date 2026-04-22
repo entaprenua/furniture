@@ -71,7 +71,7 @@ export default function CheckoutPage() {
                 <OrderItems>
                   <OrderItemsView>
                     <Flex gap={4} class="bg-muted/30 rounded-lg p-4">
-                      <Product class="flex gap-4 flex-1 min-w-0">
+                      <Product href="products" class="flex gap-4 flex-1 min-w-0">
                         <ProductImage class="w-16 h-16" />
                         <div class="flex-1">
                           <ProductName class="text-sm" />

@@ -43,7 +43,7 @@ function RoomSection() {
       <div class="container mx-auto px-4">
         <Text variant="h2" class="text-2xl font-serif font-light text-center mb-2">Shop by Room</Text>
         <Text class="text-muted-foreground text-center mb-10">Find the perfect pieces for every space</Text>
-        
+
         <CategoryList mode="root">
           <CategoryListEmptyView />
           <Grid cols={2} colsSm={2} colsMd={4} colsLg={4}>
@@ -67,7 +67,7 @@ function RoomSection() {
 
 function ProductCard() {
   return (
-    <Product class="group bg-white rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300">
+    <Product href="products" class="group bg-white rounded-sm overflow-hidden hover:shadow-xl transition-all duration-300">
       <div class="relative overflow-hidden bg-stone-100">
         <ProductImage class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105" />
         <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -98,7 +98,7 @@ function FeaturedSection() {
           <Text variant="h2" class="text-2xl font-serif font-light">New Arrivals</Text>
           <Text class="text-muted-foreground mt-2">Fresh finds for your home</Text>
         </Flex>
-        
+
         <RecommendationsRoot type="newest" limit={8}>
           <RecommendationsItems>
             <RecommendationsContent>
@@ -123,7 +123,7 @@ function BestsellersSection() {
           <Text variant="h2" class="text-2xl font-serif font-light">Customer Favorites</Text>
           <Text class="text-muted-foreground mt-2">Most loved pieces in our collection</Text>
         </Flex>
-        
+
         <RecommendationsRoot type="popular" limit={8}>
           <RecommendationsItems>
             <RecommendationsContent>
